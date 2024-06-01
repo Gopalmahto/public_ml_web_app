@@ -86,70 +86,69 @@ if (selected == 'Diabetes Prediction'):
 
 
 # Heart Disease Prediction Page
-if (selected == 'Heart Disease Prediction'):
+if(selected=='Heart Disease Prediction'): 
     
-    # page title
     st.title('Heart Disease Prediction using ML')
+    col1,col2,col3 = st.columns(3)
     
-    col1, col2, col3 = st.columns(3)
-    
     with col1:
-        age = st.text_input('Age')
-        
+        Age = st.text_input('Age')
     with col2:
-        sex = st.text_input('Sex')
-        
+        Sex = st.text_input('Sex')
     with col3:
-        cp = st.text_input('Chest Pain types')
-        
+        cp = st.text_input('chest pain type')
     with col1:
-        trestbps = st.text_input('Resting Blood Pressure')
-        
+        trestbps = st.text_input('resting blood pressure')
     with col2:
-        chol = st.text_input('Serum Cholestoral in mg/dl')
-        
+        chol = st.text_input('serum cholestoral in mg/dl')
     with col3:
-        fbs = st.text_input('Fasting Blood Sugar > 120 mg/dl')
-        
+        fbs = st.text_input('fasting blood sugar > 120 mg/dl')
     with col1:
-        restecg = st.text_input('Resting Electrocardiographic results')
-        
+        restecg = st.text_input('resting electrocardiographic results')
     with col2:
-        thalach = st.text_input('Maximum Heart Rate achieved')
-        
+        thalach = st.text_input('maximum heart rate achieved')
     with col3:
-        exang = st.text_input('Exercise Induced Angina')
-        
+        exang = st.text_input('exercise induced angina')
     with col1:
         oldpeak = st.text_input('ST depression induced by exercise')
-        
     with col2:
-        slope = st.text_input('Slope of the peak exercise ST segment')
-        
+        slope = st.text_input('slope of the peak exercise ST segment')
     with col3:
-        ca = st.text_input('Major vessels colored by flourosopy')
-        
+        ca = st.text_input('number of major vessels flourosopy')
     with col1:
-        thal = st.text_input('thal: 0 = normal; 1 = fixed defect; 2 = reversable defect')
-        
-        
-     
-     
-    # code for Prediction
-    heart_diagnosis = ''
+        thal = st.text_input('thal: 0 = normal; 1 = fixed defect; 2 = reversable defec')
     
-    # creating a button for Prediction
+    #code for Prediction
+    heart_diagnosis=''
     
     if st.button('Heart Disease Test Result'):
-        heart_prediction = heart_disease_model.predict([[age, sex, cp, trestbps, chol, fbs, restecg,thalach,exang,oldpeak,slope,ca,thal]])                          
-        
-        if (heart_prediction[0] == 1):
-          heart_diagnosis = 'The person is having heart disease'
+        if Age and Sex and cp and trestbps and chol and fbs and restecg and thalach and exang and oldpeak and slope and ca and thal:
+            Age = int(Age)
+            Sex = int(Sex)
+            cp = int(cp)
+            trestbps = int(trestbps)
+            chol = int(chol)
+            fbs = int(fbs)
+            restecg = int(restecg)
+            thalach = int(thalach)
+            exang = int(exang)
+            oldpeak = float(oldpeak)
+            slope = int(slope)
+            ca = int(ca)
+            thal = int(thal)
+            
+            heart_prediction = Heart_Disease_model.predict([[Age,Sex,cp,trestbps,chol,fbs,
+                                                        restecg,thalach,exang,oldpeak,slope,ca,thal]])
+            if(heart_prediction[0]==1):
+                heart_diagnosis = 'The Person has Heart Disease'
+            else:
+                heart_diagnosis = 'The Person does not have Heart Disease'
         else:
-          heart_diagnosis = 'The person does not have any heart disease'
-        
+            st.error("Please fill in all the fields")
+            
     st.success(heart_diagnosis)
-        
+    
+    
     
     
 
