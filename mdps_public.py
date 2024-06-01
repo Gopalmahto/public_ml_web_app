@@ -137,7 +137,7 @@ if(selected=='Heart Disease Prediction'):
             ca = int(ca)
             thal = int(thal)
             
-            heart_prediction = Heart_Disease_model.predict([[Age,Sex,cp,trestbps,chol,fbs,
+            heart_prediction = heart_disease_model.predict([[Age,Sex,cp,trestbps,chol,fbs,
                                                         restecg,thalach,exang,oldpeak,slope,ca,thal]])
             if(heart_prediction[0]==1):
                 heart_diagnosis = 'The Person has Heart Disease'
